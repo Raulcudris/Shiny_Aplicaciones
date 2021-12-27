@@ -1,35 +1,51 @@
-
 library(shiny)
 library(shinydashboard)
+library(RODBC)
+library(dplyr)
+library(DT)
 
-ui<- dashboardPage( title="Dashboard Example",
-                    skin ="blue",
-                    dashboardHeader(title = "Titulo de Proyecto",
-                                    dropdownMenu( type = "messages",
-                                                  messageItem(from = "Raul","Hola a Todos"),
-                                                  messageItem(from = "Racs","Graduacion de Rafa")
-                                                ),
-                                    dropdownMenu(type = "notifications",
-                                                 notificationItem(text = "No te olvides de la cena"),
-                                                 notificationItem(text = "Saludos")
-                                                ),
-                                    dropdownMenu(type = "tasks",
-                                                 taskItem(value = 50,
-                                                          text = "Avance en la maquetacion de dashboard",
-                                                         color= "blue"),
-                                                 taskItem(value = 0,
-                                                          text =  "Avance en dashboardsidebar",
-                                                          color = "red"
-                                                            )
-                                                 )
-                                      ),
-                    dashboardSidebar(
-                      sidebarSearchForm("searchText","buttonSearch","Buscar",icon = shiny::icon("search")),
-                      sidebarMenu(id="sidebarID",
-                                  menuItem("Primera ventana"),
-                                  menuSubItem("Primera sub-ventana")
-                                 )
-                      ),
-                    dashboardBody()
+ui<-dashboardPage(title= "Dashboard", skin= "green",
+                  dashboardHeader(title="PROYECTO",
+                                  dropdownMenu(type="messages",
+                                               messageItem(from="Abner",
+                                                           "Hola"),
+                                               messageItem(from = "Abner",
+                                                           "No te olvides de compartir")
+                                  ),
+                                  dropdownMenu(type="notifications",
+                                               notificationItem(text="No te olvides de seguir"),
+                                               notificationItem(text="Saludos")
+                                               
+                                  ),
+                                  dropdownMenu(type="tasks",
+                                               taskItem(value=50,
+                                                        text="Avance del dashboardHeader",
+                                                        color="blue"),
+                                               taskItem(value=10,
+                                                        text="Avance del dashboardSidebar",
+                                                        color="red")
+                                  )
+                                  
+                  ),
+                  dashboardSidebar(
+                    sidebarSearchForm("searchText","buttonSearch","Buscar",icon = shiny::icon("apple"))
+                    ,
+                    sidebarMenu(id="sidebarID",
+                                menuItem("Ver Base Datos", tabName = "datosbd"),
+                                menuSubItem("Primera sub-ventana"),
+                                menuItem("Segunda ventana",id = "chartsID",
+                                         menuSubItem("Sub-ventana1"),
+                                         menuSubItem("Sub-ventana2"),
+                                         menuSubItem("Sub-ventana3",icon =icon("apple-pay"))
+                                )
+                    )
+                    
+                    
+                  ),
+                  dashboardBody(
+                    
+                    tabItem(tabName = "datosbd", 
+                            DT::dataTableOutput("datosbd"))
+                    
+                  )  
 )
-

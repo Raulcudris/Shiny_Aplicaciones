@@ -7,7 +7,7 @@ library(dplyr)
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
   
-  output$vuelos_tbl<- DT::renderDataTable({
+  output$datosdb<- DT::renderDataTable({
     
     #Creacion de conexion de la base de datos a shiny
     con<- odbcDriverConnect('driver={SQL Server};

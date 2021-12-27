@@ -14,7 +14,7 @@ shinyUI(fluidPage(
     tabsetPanel(
       tabPanel("Tabla base de Datos",
                  fluidRow(
-                   column(12,DT::dataTableOutput("vuelos_tbl"))
+                   column(12,DT::dataTableOutput("datosbd"))
                  )
               ),
       tabPanel("Tab 2",
