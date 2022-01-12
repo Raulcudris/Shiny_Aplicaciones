@@ -3,6 +3,11 @@ library(shinydashboard)
 library(RODBC)
 library(dplyr)
 library(DT)
+library(readxl)
+
+Datos <- read_excel("C:/Users/MAKIIA-PC03/Desktop/Shiny_Aplicaciones/Deshboard/Datos.xlsx",
+                    sheet = "Paise_Dosis")
+
 
 ui<-dashboardPage(title= "Dashboard", skin= "green",
                   dashboardHeader(title="PROYECTO",
@@ -13,7 +18,7 @@ ui<-dashboardPage(title= "Dashboard", skin= "green",
                                                            "No te olvides de compartir")
                                   ),
                                   dropdownMenu(type="notifications",
-                                               notificationItem(text="No te olvides de seguir"),
+                                               notificationItem(text="Hola...."),
                                                notificationItem(text="Saludos")
                                                
                                   ),
@@ -28,7 +33,7 @@ ui<-dashboardPage(title= "Dashboard", skin= "green",
                                   
                   ),
                   dashboardSidebar(
-                    sidebarSearchForm("searchText","buttonSearch","Buscar",icon = shiny::icon("apple"))
+                    sidebarSearchForm("searchText","buttonSearch","Buscar",icon = shiny::icon("search"))
                     ,
                     sidebarMenu(id="sidebarID",
                                 menuItem("Ver Base Datos", tabName = "datosbd"),
